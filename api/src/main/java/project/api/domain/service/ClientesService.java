@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.api.domain.entity.Cliente;
 import project.api.domain.repository.ClientesRepository;
+import java.util.List;
 
 @Service
 public class ClientesService {
@@ -36,9 +37,14 @@ public class ClientesService {
         }
     }
 
-    @Transactional
-    public void deletarClientePorId(Integer id) {
-        clientesRepository.deleteById(id);
-        System.out.println("Cliente deletado.");
+    // @Transactional
+    // public void deletarClientePorId(Integer id) {
+    //     clientesRepository.deleteById(id);
+    //     System.out.println("Cliente deletado.");
+    // }
+
+    @Transactional(readOnly = true)
+    public List<Cliente> selecionarTodos() {
+        return clientesRepository.findAll();
     }
 }

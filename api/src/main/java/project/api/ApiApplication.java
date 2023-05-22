@@ -32,8 +32,8 @@ public class ApiApplication {
             System.out.println("Atualizando cliente");
             clientesService.atualizarNomeCliente(1, "Thiago Henrique");
 
-            System.out.println("Deletando cliente");
-            clientesService.deletarClientePorId(1);
+            // System.out.println("Deletando cliente");
+            // clientesService.deletarClientePorId(1);
 
             // Outros comandos que você desejar executar no console
         };

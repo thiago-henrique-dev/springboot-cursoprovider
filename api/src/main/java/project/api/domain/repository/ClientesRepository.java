@@ -1,5 +1,7 @@
 package project.api.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +23,8 @@ public interface ClientesRepository extends JpaRepository<Cliente, Integer> {
     @Modifying
     @Query("DELETE FROM Cliente c WHERE c.id = ?1")
     void deletarPorId(Integer id);
+
+    @Query("SELECT c FROM Cliente c")
+    List<Cliente> selecionarTodos();
 
 }
