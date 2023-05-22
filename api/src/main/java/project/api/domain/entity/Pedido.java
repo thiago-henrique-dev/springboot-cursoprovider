@@ -3,9 +3,22 @@ package project.api.domain.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "pedido")
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
     private Cliente cliente;
     private LocalDate dataPedido;
     private BigDecimal total;
