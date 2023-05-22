@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
-import project.api.domain.entity.Cliente;
-import project.api.domain.repository.Clientes;
-
-import java.util.List;
+import project.api.domain.service.ClientesService;
 
 @SpringBootApplication
 public class ApiApplication {
 
+    private final ClientesService clientesService;
+
     @Autowired
-    private Clientes clientes;
+    public ApiApplication(ClientesService clientesService) {
+        this.clientesService = clientesService;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
@@ -26,18 +27,13 @@ public class ApiApplication {
     public CommandLineRunner init() {
         return args -> {
             System.out.println("Salvando clientes");
-            Cliente cliente = new Cliente("Thiago");
-            clientes.salvar(cliente);
-            System.out.println("Cliente salvo: " + cliente);
+            clientesService.salvarCliente("Thiago");
 
             System.out.println("Atualizando cliente");
-            cliente.setNome("Thiago Henrique");
-            clientes.atualizar(cliente.getId(), cliente);
-            System.out.println("Cliente atualizado: " + cliente);
+            clientesService.atualizarNomeCliente(1, "Thiago Henrique");
 
             System.out.println("Deletando cliente");
-            clientes.deletar(cliente.getId());
-            System.out.println("Cliente deletado");
+            clientesService.deletarClientePorId(1);
 
             // Outros comandos que você desejar executar no console
         };
