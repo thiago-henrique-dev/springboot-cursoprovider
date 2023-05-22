@@ -27,4 +27,7 @@ public interface ClientesRepository extends JpaRepository<Cliente, Integer> {
     @Query("SELECT c FROM Cliente c")
     List<Cliente> selecionarTodos();
 
+    @Query("SELECT c FROM Cliente c WHERE c.id = ?1")
+    Cliente selecionarPorId(Integer id);
+
 }
